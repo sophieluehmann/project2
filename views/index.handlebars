@@ -1,4 +1,4 @@
-<div id="home">
+<!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
@@ -29,5 +29,44 @@
   </div>
 </div>
 
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/index.js"></script>  -->
+
+
+
+
+<div class="jumbotron text-center">
+  <h1>Sesh</h1>
+  <p>get stuff done.</p> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Tasks:</h3>
+    <ul>
+     {{#each tasks}}
+    {{#unless this.complete}}
+    <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
+      {{this.task_name}}
+        <button type="submit" class='taskComplete'> Complete </button>
+    </form>
+    {{/unless}}
+  {{/each}}
+
+</ul>
+    </div>
+    <div class="col-sm-6">
+      <h3>Complete:</h3>
+      
+    <ul>
+    {{#each tasks}}
+      {{#if complete}}
+       {{this.task_name}}
+     {{/if}}
+    {{/each}}
+  </ul>
+    </div>
+  </div>
+</div>
