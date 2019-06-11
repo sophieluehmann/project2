@@ -13,6 +13,7 @@
 
 ## Start the app locally:
 - create the db in your local mysql with `models/schema.sql`
+- update your mysql password in `config/config.json`
 - run this command in the project root: `npx sequelize-cli db:migrate`
 - no seeds yet
 - run `npm test`
