@@ -10,6 +10,10 @@ module.exports = function(app) {
 
   // Create a new task
   app.post("/api/tasks", function(req, res) {
+    // req.body object should have at least:
+    // title
+    // but can have:
+    // description
     db.Task.create(req.body).then(function(dbTasks) {
       res.json(dbTasks);
     });
