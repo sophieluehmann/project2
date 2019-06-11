@@ -11,8 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       description: DataTypes.TEXT,
-      complete: DataTypes.BOOLEAN,
-      minutesSpent: DataTypes.INTEGER
+      complete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {}
   );
