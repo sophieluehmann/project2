@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       description: DataTypes.TEXT,
-      status: DataTypes.STRING,
+      complete: DataTypes.BOOLEAN,
       minutesSpent: DataTypes.INTEGER
     },
     {}

@@ -3,21 +3,21 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Task.findAll({}).then(function(dbTasks) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbExamples
+        tasks: dbTasks
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({
+  // Load task page and pass in an task by id
+  app.get("/task/:id", function(req, res) {
+    db.Task.findOne({
       where: { id: req.params.id }
-    }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
+    }).then(function(dbTask) {
+      res.render("task", {
+        task: dbTask
       });
     });
   });
