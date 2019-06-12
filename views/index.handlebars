@@ -14,9 +14,7 @@
         {{#unless this.complete}}
         <div class="row">
           <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
-          <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
-            <button type="submit" class='taskComplete'> Complete </button>
-          </form>
+            <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
         </div>
         <div class="row">
           <div class="form-check">
@@ -45,7 +43,7 @@
         {{#each tasks}}
           {{#if complete}}
             <div class="row">
-              <a href="task/{{this.id}}">{{this.title}}</a>
+              <s><a href="task/{{this.id}}">{{this.title}}</a></s>
             </div>
           {{/if}}
         {{/each}}
@@ -53,3 +51,18 @@
       </div>
   </div>
 </div>
+<script>
+  const completeButtons = document.querySelectorAll('.taskComplete');
+  for (let i = 0, len = completeButtons.length; i < len; i++) {
+    completeButtons[i].addEventListener('click', (event) => {
+      const id = event.target.attributes['data-taskId'].value;
+      fetch(`/api/tasks/complete/${id}`, {
+        method: 'PUT'
+      }).then(function(res) {
+        location.reload();
+      }).catch(function(err) {
+        console.log(err)
+      });
+    });
+  }
+</script>

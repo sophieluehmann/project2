@@ -34,4 +34,24 @@ module.exports = function(app) {
         res.status(500).send(`Server Error: ${err}`);
       });
   });
+
+  // Complete a task
+  app.put("/api/tasks/complete/:id", function(req, res) {
+    db.Task.update(
+      { complete: true },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(function(dbTasks) {
+        console.log(dbTasks);
+        res.status(200).send(`Completed task: ${dbTasks}`);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err}`);
+      });
+  });
 };
