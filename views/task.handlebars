@@ -4,15 +4,21 @@
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">Task</h5>
-          <p>
-            <strong>ID</strong>: {{task.id}}</p>
-          <p>
-          <p>
-            <strong>Title</strong>: {{task.title}}</p>
-          <p>
-            <strong>Description:</strong> {{task.description}}</p>
-            <button id="delete" style="color: red" > Delete </button><br>
-            <a href="/">← Back To Home</a>
+
+          <form action="/api/tasks/{{task.id}}" method="POST">
+            <p>
+              <strong>ID</strong>: {{task.id}}</p>
+            <p>
+              <p>
+                <strong>Title</strong>: <input name="title" type="text" value="{{task.title}}"></p>
+              <p>
+                <strong>Description:</strong> <input name="description" type="text" value="{{task.description}}"></p>
+              <button type="submit" id="update" style="color: green"> Submit changes </button><br>
+          </form>
+
+          <button id="delete" style="color: red"> Delete </button>
+
+          <a href="/">← Back To Home</a>
         </div>
       </div>
     </div>
@@ -21,15 +27,16 @@
 <script>
   document
     .getElementById("delete")
-    .addEventListener("click", function(e) {
-      console.log("clicked")
+    .addEventListener("click", function (e) {
+      console.log("delete button clicked")
       fetch("/api/tasks/{{task.id}}", { method: "DELETE" })
-        .then(function(res) {
+        .then(function (res) {
           window.location = "/";
         })
-        .catch(function(err){
+        .catch(function (err) {
           console.error(err);
           window.location = "/";
         });
-  });
+    });
+
 </script>

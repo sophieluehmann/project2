@@ -35,6 +35,25 @@ module.exports = function(app) {
       });
   });
 
+  // Update a task by id
+  app.post("/api/tasks/:id", function(req, res) {
+    db.Task.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbTasks) {
+        console.log(dbTasks);
+        //res.status(200).send(`Updated task: ${dbTasks}`);
+        res.redirect("/");
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err}`);
+      });
+    console.log(req.body);
+  });
+
   // Complete a task
   app.put("/api/tasks/complete/:id", function(req, res) {
     db.Task.update(
