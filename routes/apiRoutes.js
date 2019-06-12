@@ -15,7 +15,8 @@ module.exports = function(app) {
     // but can have:
     // description
     db.Task.create(req.body).then(function(dbTasks) {
-      res.json(dbTasks);
+      console.log(dbTasks);
+      res.redirect("/");
     });
   });
 

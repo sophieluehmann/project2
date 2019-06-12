@@ -6,13 +6,14 @@
 <div class="container">
   <div class="row">
   <div class="col-6">
-    
+
       <h2>Tasks:</h2>
+      <p><form action="api/tasks" method="POST">Add a Task: <input type="text" name="title"><button type="submit" > + </button></form></p>
       <ul>
       {{#each tasks}}
         {{#unless this.complete}}
         <div class="row">
-          <a href="task/{{this.id}}">{{this.title}}</a>
+          <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
           <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
             <button type="submit" class='taskComplete'> Complete </button>
           </form>
