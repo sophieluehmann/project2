@@ -30,6 +30,7 @@ var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
+  console.log("==> Forcing db sync");
   syncOptions.force = true;
 }
 
