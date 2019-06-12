@@ -18,6 +18,8 @@
 - no seeds yet
 - run `npm test`
 - then `npm start`
+- then in a separate window run `npx sequelize-cli db:seed:all` to add test tasks.
+  - this will need to be done everytime the app starts if force sync is happening.
 
 
 ## Questions/Things to consider as we think about project design:

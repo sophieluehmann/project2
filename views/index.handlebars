@@ -49,7 +49,7 @@
      {{#each tasks}}
     {{#unless this.complete}}
     <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
-      {{this.task_name}}
+      <a href="task/{{this.id}}">{{this.title}}</a>
         <button type="submit" class='taskComplete'> Complete </button>
     </form>
     {{/unless}}
@@ -63,7 +63,7 @@
     <ul>
     {{#each tasks}}
       {{#if complete}}
-       {{this.task_name}}
+       {{this.title}}
      {{/if}}
     {{/each}}
   </ul>
