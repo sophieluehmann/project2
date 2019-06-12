@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -14,17 +15,17 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      status: {
-        type: Sequelize.STRING
+      complete: {
+        type: Sequelize.BOOLEAN
       },
       minutesSpent: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

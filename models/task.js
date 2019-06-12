@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       description: DataTypes.TEXT,
-      status: DataTypes.STRING,
-      minutesSpent: DataTypes.INTEGER
+      complete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
-    {}
+    {
+      underscored: true
+    }
   );
   // eslint-disable-next-line no-unused-vars
   Task.associate = function(models) {
