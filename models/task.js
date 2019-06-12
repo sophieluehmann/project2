@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false
       }
     },
-    {}
+    {
+      underscored: true
+    }
   );
   // eslint-disable-next-line no-unused-vars
   Task.associate = function(models) {

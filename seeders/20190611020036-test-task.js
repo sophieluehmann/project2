@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 "use strict";
 
 module.exports = {
@@ -20,14 +21,14 @@ module.exports = {
           title: "Mow the lawn",
           description:
             "- take out the lawnmower\n- mow the lawn\n-take in the lawnmower",
-          createdAt: new Date(),
-          updatedAt: new Date()
+          created_at: new Date(),
+          updated_at: new Date()
         },
         {
           title: "Mow the lawn again!",
           description: "do it next week.",
-          createdAt: new Date(),
-          updatedAt: new Date()
+          created_at: new Date(),
+          updated_at: new Date()
         }
       ],
       {}

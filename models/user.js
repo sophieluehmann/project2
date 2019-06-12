@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       challenge_response: DataTypes.STRING(50),
       challenge_question: DataTypes.STRING(100)
     },
-    {}
+    {
+      underscored: true
+    }
   );
   // eslint-disable-next-line no-unused-vars
   User.associate = function(models) {
