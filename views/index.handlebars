@@ -1,41 +1,3 @@
-<!-- <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>  -->
-
-
-
-
 <div class="jumbotron text-center">
   <h1>Sesh</h1>
   <p>get stuff done.</p> 
@@ -43,30 +5,50 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <h3>Tasks:</h3>
-    <ul>
-     {{#each tasks}}
-    {{#unless this.complete}}
-    <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
-      {{this.task_name}}
-        <button type="submit" class='taskComplete'> Complete </button>
-    </form>
-    {{/unless}}
-  {{/each}}
-
-</ul>
-    </div>
-    <div class="col-sm-6">
-      <h3>Complete:</h3>
-      
-    <ul>
-    {{#each tasks}}
-      {{#if complete}}
-       {{this.task_name}}
-     {{/if}}
-    {{/each}}
-  </ul>
-    </div>
+  <div class="col-6">
+    
+      <h2>Tasks:</h2>
+      <ul>
+      {{#each tasks}}
+        {{#unless this.complete}}
+        <div class="row">
+          <a href="task/{{this.id}}">{{this.title}}</a>
+          <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
+            <button type="submit" class='taskComplete'> Complete </button>
+          </form>
+        </div>
+        <div class="row">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              {{this.description}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
+            <p>Add Description:
+              <input type="text" name="description"+{{this.id}}>
+              <button type="submit" class="newDescription">Submit</button>
+            </p>
+          </form>
+        </div>  
+        {{/unless}}
+      {{/each}}
+      </ul>
+    
+  </div>
+  <div class="col-6">
+    <h3>Complete:</h3>
+      <ul>
+        {{#each tasks}}
+          {{#if complete}}
+            <div class="row">
+              <a href="task/{{this.id}}">{{this.title}}</a>
+            </div>
+          {{/if}}
+        {{/each}}
+      </ul>
+      </div>
   </div>
 </div>
