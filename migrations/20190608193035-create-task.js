@@ -14,8 +14,8 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      status: {
-        type: Sequelize.STRING
+      complete: {
+        type: Sequelize.BOOLEAN
       },
       minutesSpent: {
         type: Sequelize.INTEGER
