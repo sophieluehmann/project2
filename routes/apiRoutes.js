@@ -24,8 +24,14 @@ module.exports = function(app) {
   app.delete("/api/tasks/:id", function(req, res) {
     db.Task.destroy({
       where: { id: req.params.id }
-    }).then(function(dbTasks) {
-      res.json(dbTasks);
-    });
+    })
+      .then(function(dbTasks) {
+        console.log(dbTasks);
+        res.status(200).send(`Deleted task: ${dbTasks}`);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err}`);
+      });
   });
 };
