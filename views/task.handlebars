@@ -11,9 +11,25 @@
             <strong>Title</strong>: {{task.title}}</p>
           <p>
             <strong>Description:</strong> {{task.description}}</p>
+            <button id="delete" style="color: red" > Delete </button><br>
             <a href="/">← Back To Home</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  document
+    .getElementById("delete")
+    .addEventListener("click", function(e) {
+      console.log("clicked")
+      fetch("/api/tasks/{{task.id}}", { method: "DELETE" })
+        .then(function(res) {
+          window.location = "/";
+        })
+        .catch(function(err){
+          console.error(err);
+          window.location = "/";
+        });
+  });
+</script>
