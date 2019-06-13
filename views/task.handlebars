@@ -12,11 +12,12 @@
               <p>
                 <strong>Title</strong>: <input name="title" type="text" value="{{task.title}}"></p>
               <p>
-                <strong>Description:</strong> <input name="description" type="text" value="{{task.description}}"></p>
-              <button type="submit" id="update" style="color: green"> Submit changes </button><br>
+                <strong>Description:</strong><textarea rows="4" cols="48" name="description">{{task.description}}</textarea></p>
+              <button type="submit" id="update" style="color: green"> Submit changes </button>
+              
           </form>
 
-          <button id="delete" style="color: red"> Delete </button>
+          <button id="delete" style="color: red"> Delete </button><br>
 
           <a href="/">← Back To Home</a>
         </div>
