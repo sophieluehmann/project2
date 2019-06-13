@@ -9,6 +9,7 @@
 
       <h2>Tasks:</h2>
       <p><form action="api/tasks" method="POST">Add a Task: <input type="text" name="title"><button type="submit" > + </button></form></p>
+
       <ul>
       {{#each tasks}}
         {{#unless this.complete}}
@@ -44,8 +45,10 @@
         {{#each tasks}}
           {{#if complete}}
             <div class="row">
-              <s><a href="task/{{this.id}}">{{this.title}}</a></s>
+              <s><a href="task/{{this.id}}">{{this.title}}</a></s>&nbsp;&nbsp;
+              <button data-taskId="{{this.id}}" class="taskIncomplete">Incomplete</button><br>
             </div>
+            <br>
           {{/if}}
         {{/each}}
       </ul>
@@ -58,6 +61,20 @@
     completeButtons[i].addEventListener('click', (event) => {
       const id = event.target.attributes['data-taskId'].value;
       fetch(`/api/tasks/complete/${id}`, {
+        method: 'PUT'
+      }).then(function(res) {
+        location.reload();
+      }).catch(function(err) {
+        console.log(err)
+      });
+    });
+  }
+
+  const incompleteButtons = document.querySelectorAll('.taskIncomplete');
+  for (let i = 0, len = incompleteButtons.length; i < len; i++) {
+    incompleteButtons[i].addEventListener('click', (event) => {
+      const id = event.target.attributes['data-taskId'].value;
+      fetch(`/api/tasks/incomplete/${id}`, {
         method: 'PUT'
       }).then(function(res) {
         location.reload();
