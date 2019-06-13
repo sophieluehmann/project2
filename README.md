@@ -12,12 +12,19 @@
 6.	Analytics -  how much time spent on a task. Create some sort of graphical representation (use chart.js)
 
 ## Start the app locally:
+- git clone this repo into your local machine
 - create the db in your local mysql with `models/schema.sql`
+  * navigate to the models folder in your terminal, run `mysql -u root -p`
+  * with the `mysql>` command line tool running, enter the command `source schema.sql`
+  * type `exit` and enter
 - update your mysql password in `config/config.json`
-- run this command in the project root: `npx sequelize-cli db:migrate`
-- no seeds yet
+- run `npm install`
 - run `npm test`
+- run `npm start`
+- open `http://localhost:3000/` in your browser to see the app
+- run this command in the project root: `npx sequelize-cli db:migrate`
 - then `npm start`
+- no seeds yet
 - then in a separate window run `npx sequelize-cli db:seed:all` to add test tasks.
   - this will need to be done everytime the app starts if force sync is happening.
 
