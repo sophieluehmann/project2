@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   // eslint-disable-next-line no-unused-vars
   Task.associate = function(models) {
     // associations can be defined here
+    models.Task.hasMany(models.Task);
     models.Task.belongsTo(models.User);
   };
   return Task;
