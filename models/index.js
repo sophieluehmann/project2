@@ -14,7 +14,8 @@ if (config.use_env_variables) {
     process.env.DB_USER,
     process.env.DB_PASS,
     {
-      port: process.env.DB_PORT
+      port: process.env.DB_PORT,
+      host: process.env.DB_HOST
     }
   );
 } else {
