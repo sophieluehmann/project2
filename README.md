@@ -22,11 +22,6 @@
 - run `npm test`
 - run `npm start`
 - open `http://localhost:3000/` in your browser to see the app
-- run this command in the project root: `npx sequelize-cli db:migrate`
-- then `npm start`
-- no seeds yet
-- then in a separate window run `npx sequelize-cli db:seed:all` to add test tasks.
-  - this will need to be done everytime the app starts if force sync is happening.
 
 
 ## Questions/Things to consider as we think about project design:
