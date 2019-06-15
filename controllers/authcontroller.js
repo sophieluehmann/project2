@@ -11,8 +11,13 @@ exports.signin = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  console.log("something");
-  db.Task.findAll({}).then(function(dbTasks) {
+  console.log("something new ");
+  console.log(req.user.id);
+  db.Task.findAll({
+    where: {
+      userId: req.user.id
+    }
+  }).then(function(dbTasks) {
     res.render("index", {
       msg: "Welcome!",
       tasks: dbTasks
