@@ -20,28 +20,6 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/tasks/:title", function(req, res) {
-    // req.body object should have at least:
-    // title
-    // but can have:
-    // description
-    // eslint-disable-next-line camelcase
-    console.log(req.params.title);
-    var title = req.params.title;
-    //var task_id = req.params.id;
-    var description = req.body.description;
-    console.log(description);
-    // eslint-disable-next-line camelcase
-    db.Task.create({ title: title, description: description })
-      .then(function(dbTasks) {
-        console.log(dbTasks);
-        res.redirect("/");
-      })
-      .catch(function(err) {
-        console.log(err, id + description);
-      });
-  });
-
   // Delete a task by id
   app.delete("/api/tasks/:id", function(req, res) {
     db.Task.destroy({
