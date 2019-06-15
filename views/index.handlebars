@@ -1,6 +1,7 @@
 <div class="jumbotron text-center">
   <h1>Sesh</h1>
   <p>get stuff done.</p> 
+  <button type="logout" id="logout">Logout</button>
 </div>
 
 <div class="container">
@@ -83,4 +84,9 @@
       });
     });
   }
+
+  const logoutButton = document.querySelector("#logout");
+  logoutButton.addEventListener('click', (event) => {
+    window.location.href = "/logout";
+  });
 </script>

@@ -4,19 +4,20 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      userid: {
+      /*userid: {
         type: DataTypes.STRING(50),
         allowNull: false
-      },
-      passwrd: {
-        type: DataTypes.STRING(25),
+      },*/
+      password: {
+        type: DataTypes.STRING(128),
         allowNull: false
       },
       first_name: DataTypes.STRING(30),
       last_name: DataTypes.STRING(30),
       email: {
         type: DataTypes.STRING(75),
-        allowNull: false
+        allowNull: false,
+        validate: { isEmail: true }
       },
       challenge_response: DataTypes.STRING(50),
       challenge_question: DataTypes.STRING(100)

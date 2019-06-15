@@ -1,8 +1,8 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
+  // Load index page -- moved to authController.js file
+  /*app.get("/", function(req, res) {
     db.Task.findAll({}).then(function(dbTasks) {
       res.render("index", {
         msg: "Welcome!",
@@ -10,6 +10,16 @@ module.exports = function(app) {
       });
     });
   });
+
+  //sign-up page
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
+  //sign-in page
+  app.get("/signin", function(req, res) {
+    res.render("signin");
+  });*/
 
   // Load task page and pass in an task by id
   app.get("/task/:id", function(req, res) {

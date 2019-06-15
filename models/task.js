@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           len: [1]
         }
@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     models.Task.hasMany(models.Task);
     models.Task.belongsTo(models.User);
+    models.Task.hasMany(models.Task);
   };
   return Task;
 };
