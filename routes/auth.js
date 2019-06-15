@@ -1,6 +1,7 @@
+/*
 let passport = require("passport");
 //let authSession = require("passport-session");
-// let authHttp = require("passport-http");
+//let authHttp = require("passport-http");
 let LocalStrategy = require("passport-local").Strategy;
 let GoogleStrategy = require("passport-google-oauth").OAuthStrategy;
 require("dotenv").config();
@@ -61,4 +62,38 @@ module.exports = function(app) {
       }
     )
   );
+};
+*/
+
+//TODO: ^check out that code and implement. Craig's code above.
+
+var authController = require("../controllers/authcontroller.js");
+
+module.exports = function(app, passport) {
+  app.get("/signup", authController.signup);
+  app.get("/signin", authController.signin);
+  app.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/",
+      failureRedirect: "/signup"
+    })
+  );
+  app.get("/", isLoggedIn, authController.index);
+  app.get("/logout", authController.logout);
+  app.post(
+    "/signin",
+    passport.authenticate("local-signin", {
+      successRedirect: "/",
+      failureRedirect: "/signin"
+    })
+  );
+
+  function isLoggedIn(req, res, next) {
+    //console.log("are you logged in?!");
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/signin");
+  }
 };
