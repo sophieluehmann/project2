@@ -3,7 +3,11 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all tasks
   app.get("/api/tasks", function(req, res) {
-    db.Task.findAll({}).then(function(dbTasks) {
+    db.Task.findAll({
+      where: {
+        userId: req.user.id
+      }
+    }).then(function(dbTasks) {
       res.json(dbTasks);
     });
   });
@@ -14,7 +18,10 @@ module.exports = function(app) {
     // title
     // but can have:
     // description
-    db.Task.create(req.body).then(function(dbTasks) {
+    db.Task.create({
+      title: req.body.title,
+      UserId: req.user.id
+    }).then(function(dbTasks) {
       console.log(dbTasks);
       res.redirect("/");
     });
