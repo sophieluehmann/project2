@@ -14,27 +14,22 @@
       <ul>
       {{#each tasks}}
         {{#unless this.complete}}
+        <hr>
         <div class="row">
           <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
             <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
         </div>
         <div class="row">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              {{this.description}}
-            </label>
-          </div>
+          <p>{{this.description}}</p>
         </div>
         <div class="row">
-          
-          <form action="api/tasks/{{this.id}}?_method=PUT" method="POST">
-            <p>Add Description:
-              <input type="text" name="description"+{{this.id}}>
-              <button type="submit" class="newDescription">Submit</button>
-            </p>
+          <form action="api/tasks" method="POST">
+            <input type="hidden" name="TaskId" value="{{this.id}}">
+            Add a Sub Task: <input type="text" name="title">
+            <button type="submit" > + </button>
           </form>
-        </div>  
+        </div>
+        <div class="nestedTasks" data-root-task-id="{{this.id}}"></div>
         {{/unless}}
       {{/each}}
       </ul>
@@ -57,6 +52,29 @@
   </div>
 </div>
 <script>
+  const nestedTasksDivs = document.querySelectorAll('.nestedTasks');
+  for (let i = 0, len = nestedTasksDivs.length; i < len; i++) {
+    const ntd = nestedTasksDivs[i];
+    const rootTaskId = ntd.getAttribute("data-root-task-id");
+    let nestedTasksHtml = "";
+    fetch(`/api/tasks/${rootTaskId}`)
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(tasks) {
+        console.log(tasks);
+        for (let i = 0, len = tasks.length; i < len; i++) {
+          if (tasks[i].title !== undefined) {
+            nestedTasksHtml += `<p><a href="task/${tasks[i].id}">${tasks[i].title}</a></p>`;
+          }
+        }
+        ntd.innerHTML = nestedTasksHtml;
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+  }
+
   const completeButtons = document.querySelectorAll('.taskComplete');
   for (let i = 0, len = completeButtons.length; i < len; i++) {
     completeButtons[i].addEventListener('click', (event) => {
