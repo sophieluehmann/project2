@@ -17,7 +17,8 @@
         <hr>
         <div class="row">
           <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
-            <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
+          <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
+          <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
         </div>
         <div class="row">
           <p>{{this.description}}</p>
@@ -52,6 +53,41 @@
   </div>
 </div>
 <script>
+
+  const startPauseButtons = document.querySelectorAll('.startPauseTask');
+
+  // toggle start/pause buttons
+  for (let i = 0, len = startPauseButtons.length; i < len; i++) {
+    startPauseButtons[i].addEventListener('click', (event) => {
+      const state = event.target.attributes['data-state'].value;
+      const id = event.target.attributes['data-taskId'].value;
+      if (state === "started") {
+        event.target.setAttribute('data-state', "paused");
+        event.target.innerHTML = "Start"
+      } else if (state === "paused") {
+        event.target.setAttribute('data-state', "started");
+        event.target.innerHTML = "Pause"
+      }
+    });
+  }
+
+  // updates running tasks every minute.
+  setInterval(() => {
+    for (let i = 0, len = startPauseButtons.length; i < len; i++) {
+      len state = startPauseButtons[i].attributes['data-state'].value;
+      len id = startPauseButtons[i].attributes['data-taskId'].value;
+      if (state === "started") {
+        fetch(`/api/tasks/heartbeat/${id}`, {
+          method: 'PUT'
+        }).then(function(res) {
+          console.log('Incremented minutes spent on task', id);
+        }).catch(function(err) {
+          console.log(err)
+        });
+      }
+    }
+  }, 60000);
+
   const nestedTasksDivs = document.querySelectorAll('.nestedTasks');
   for (let i = 0, len = nestedTasksDivs.length; i < len; i++) {
     const ntd = nestedTasksDivs[i];
