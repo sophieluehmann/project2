@@ -1,3 +1,5 @@
+App deployed on heroku: https://uwproject2.herokuapp.com/
+
 # READ ME for Group 1 Project 2
 
 ## Project /Task Tracker with timer: (Name to follow)
