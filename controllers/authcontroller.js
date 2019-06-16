@@ -15,7 +15,7 @@ exports.index = function(req, res) {
   console.log(req.user.id);
   db.Task.findAll({
     where: {
-      userId: req.user.id
+      UserId: req.user.id
     }
   }).then(function(dbTasks) {
     res.render("index", {

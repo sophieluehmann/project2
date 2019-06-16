@@ -3,11 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all tasks
   app.get("/api/tasks", function(req, res) {
-    db.Task.findAll({
-      where: {
-        userId: req.user.id
-      }
-    }).then(function(dbTasks) {
+    db.Task.findAll({}).then(function(dbTasks) {
       res.json(dbTasks);
     });
   });
@@ -30,7 +26,9 @@ module.exports = function(app) {
   // Delete a task by id
   app.delete("/api/tasks/:id", function(req, res) {
     db.Task.destroy({
-      where: { id: req.params.id }
+      where: {
+        id: req.params.id
+      }
     })
       .then(function(dbTasks) {
         console.log(dbTasks);
