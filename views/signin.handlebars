@@ -7,3 +7,14 @@
 </form>
 
 <button id="signup"><a href="/signup">Go to Sign Up</a></button>
+<script>
+  const url = new URL(window.location);
+  const params = new URLSearchParams(url.search);
+  if (params.has("failure")) {
+    let p = document.createElement('p');
+    let msg = document.createTextNode("Invalid username or password.");
+    p.style.color = 'red';
+    p.appendChild(msg);
+    document.body.insertBefore(p, document.body.childNodes[0]);
+  }
+</script>
