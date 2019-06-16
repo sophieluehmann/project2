@@ -11,36 +11,16 @@ exports.signin = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  console.log("something");
-  db.Task.findAll({}).then(function(dbTasks) {
-    var myTitles = [];
-    for (var i = 0; i < dbTasks.length; i++) {
-      var title = dbTasks[i].dataValues.title;
-      if (!myTitles.includes(title)) {
-        myTitles.push(title);
-      }
+  console.log("something new ");
+  console.log(req.user.id);
+  db.Task.findAll({
+    where: {
+      UserId: req.user.id
     }
-    var handlebarsArray = [];
-    for (var i = 0; i < myTitles.length; i++) {
-      var result = dbTasks.filter(function(task) {
-        if (task.title === myTitles[i]) {
-          console.log(task.dataValues);
-          return true;
-        } else {
-          return false;
-        }
-      });
-      var adjResult = result.map(function(data) {
-        return data.dataValues;
-      });
-      var newObject = { title: myTitles[i], tasks: adjResult };
-      handlebarsArray.push(newObject);
-    }
-    console.log(handlebarsArray);
-    //console.log(myTitles);
+  }).then(function(dbTasks) {
     res.render("index", {
       msg: "Welcome!",
-      tasksArray: handlebarsArray
+      tasks: dbTasks
     });
   });
 };
