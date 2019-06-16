@@ -1,3 +1,95 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  background-color: rgb(213, 213, 213);
+  font-family: 'Baloo', cursive;
+}
+.jumbo {
+  background-color: rgb(213, 213, 213);
+  font-family: 'Baloo', cursive;
+}
+
+.round {
+  border-radius: 20px;
+}
+.inputField {
+  margin-top: 25px;
+  margin-right: auto;
+  margin-bottom: 25px;
+  margin-left: auto;
+  width: 85%;
+}
+.inputText {
+  font-weight: 500;
+  font-size: 20px;
+}
+.authTitle {
+  font-weight: 300;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+} 
+
+.authFormText {
+ font-size: 36 px;
+  color: black;
+  text-align: center;
+}
+.authBody {
+  border-color: black;
+  border-style: solid;
+  border-width: 0px 5px 0px 5px;
+  padding-bottom: 15px;
+ }
+
+.authHeader {
+  background-color: #6D7993;
+  text-align: center;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  max-height: 80px;
+  border-radius: 20px 20px 0px 0px;
+  border-color: black;
+  border-style: solid;
+  border-width: 5px 5px 0px 5px;
+}
+        
+.authModalLoginBtn {
+    background-color: #6D7993;
+            color: black;
+            font-weight: bold;
+            width: 110px;
+            margin-right: 30px;
+            border-radius: 18px;
+        }
+        
+        .authModalLogoutBtn {
+          background-color: #6D7993;
+            color: black;
+            font-weight: bold;
+        }
+        
+        .authModalRegisterBtn {
+          background-color: #6D7993;
+            color: black;
+            font-weight: bold;
+            margin-left: 30px;
+            border-radius: 18px;
+        }
+        
+        .authFooter {
+          background-color: #6D7993;
+           height: 30px;
+           border-radius: 0px 0px 20px 20px;
+           border-color: black;
+           border-style: solid;
+           border-width: 0px 5px 5px 5px;
+        }
+
+        
+   

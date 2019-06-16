@@ -1,10 +1,70 @@
-<form id="signin" name="signin" method="post" action="signin">
-  <label for="email">Email Address</label>
-  <input class="text" name="email" type="text" />
-  <label for="password">Password</label>
-  <input name="password" type="password" />
-  <input class="btn" type="submit" value="Sign In" />
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+   <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
+</head>
+<body>
+    <script>
+    var loginButton = document.querySelector("#loginBtn");
+    loginButton.addEventListener('click', (event) => {
+        window.location.href = "/signin";
+    });
+    var registerButton = document.querySelector("#registerBtn");
+    logoutButton.addEventListener('click', (event) => {
+        window.location.href = "/signup";
+    });
+    </script>
+
+
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid jumbo">
+        </div> 
+        <div id ="login" class="modal-dialog">
+            <div class="modal-content round"> 
+                <div class="modal-header authHeader"> 
+                    <h1 class="authTitle">Login</h1>
+                </div>
+                <div class="authBody">
+                    <form id="modalForm" role="form">
+                        <div class="form-group inputField">
+                            <label class="inputText" for="uid-input">Your Name:</label>
+                            <input type="email" class="form-control inputText" id="email-input" placeholder="Enter username or e-mail address">
+                        </div>
+                        <div class="form-group inputField">
+                            <label class="inputText" for="pass-input">Password:</label>
+                            <input type="password" class="form-control inputText" id="pass-input" placeholder="Enter password">
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="mx-auto">
+                        
+                        <button id="loginBtn" type="submit" class="btn btn-lg btn-success authModalLoginBtn">   Login   </button>
+                            
+                        <button id="registerBtn" type="submit" class="btn btn-lg btn-primary authModalRegisterBtn" data-dismiss="modal">Register</button>
+                              
+                            </div>
+                        </div>    
+                    </div> 
+                    </form>
+                </div>
+                <div class="modal-footer authFooter">
+                </div>
+                
+        </div>
+        
+
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>
 
 <button id="signup"><a href="/signup">Go to Sign Up</a></button>
 <script>
@@ -18,3 +78,4 @@
     document.body.insertBefore(p, document.body.childNodes[0]);
   }
 </script>
+
