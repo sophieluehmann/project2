@@ -13,9 +13,11 @@ exports.signin = function(req, res) {
 exports.index = function(req, res) {
   console.log("something new ");
   console.log(req.user.id);
+  // find all root tasks
   db.Task.findAll({
     where: {
-      UserId: req.user.id
+      UserId: req.user.id,
+      TaskId: null
     }
   }).then(function(dbTasks) {
     res.render("index", {

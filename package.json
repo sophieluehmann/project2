@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "sesh",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "task tracking system",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,6 +10,14 @@
     "test": "npm run lint && cross-env NODE_ENV=test mocha --reporter spec --exit"
   },
   "license": "ISC",
+  "homepage": "https://github.com/sophieluehmann/project2#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sophieluehmann/project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sophieluehmann/project2/issues"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
