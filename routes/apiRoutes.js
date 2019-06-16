@@ -8,6 +8,17 @@ module.exports = function(app) {
     });
   });
 
+  // Get all nested tasks.
+  app.get("/api/tasks/:id", function(req, res) {
+    db.Task.findAll({
+      where: {
+        TaskId: req.params.id
+      }
+    }).then(function(dbTasks) {
+      res.json(dbTasks);
+    });
+  });
+
   // Create a new task
   app.post("/api/tasks", function(req, res) {
     // req.body object should have at least:
@@ -16,7 +27,8 @@ module.exports = function(app) {
     // description
     db.Task.create({
       title: req.body.title,
-      UserId: req.user.id
+      UserId: req.user.id,
+      TaskId: req.body.TaskId || null
     }).then(function(dbTasks) {
       console.log(dbTasks);
       res.redirect("/");
