@@ -74,8 +74,8 @@
   // updates running tasks every minute.
   setInterval(() => {
     for (let i = 0, len = startPauseButtons.length; i < len; i++) {
-      len state = startPauseButtons[i].attributes['data-state'].value;
-      len id = startPauseButtons[i].attributes['data-taskId'].value;
+      let state = startPauseButtons[i].attributes['data-state'].value;
+      let id = startPauseButtons[i].attributes['data-taskId'].value;
       if (state === "started") {
         fetch(`/api/tasks/heartbeat/${id}`, {
           method: 'PUT'
