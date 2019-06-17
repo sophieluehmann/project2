@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <script>
         $(document).ready(function (event) {
@@ -31,16 +30,14 @@
         <div id="login" class="modal-dialog">
             <div class="modal-content round">
                 <div class="modal-header authHeader">
-                    <h1 class="authTitle">Login</h1>
+                    <h1 class="authTitle">Task Tracker</h1>
                 </div>
                 <div class="authBody">
-
-
                     <form name="signin" id="modalForm signin" method="POST" action="signin">
                         <div class="form-group inputField">
                             <label for"email" class="inputText">Email Address:</label>
                             <input type="text" name="email" class="text form-control inputText" id="email-input"
-                                placeholder="Enter username or e-mail address">
+                                placeholder="Enter e-mail address">
                         </div>
                         <div class="form-group inputField">
                             <label for="password" class="inputText">Password:</label>
@@ -50,31 +47,19 @@
                         <div>
                             <div class="row">
                                 <div class="mx-auto">
-
-
-                                    <input class="btn" type="submit" value="Sign In" />
-                                    <!-- <button id="loginBtn" type="submit"
-                                            class="btn btn-lg btn-success authModalLoginBtn">Log In</button> -->
-
-
+                                    <input class="btn btn-lg btn-primary border border-0 authModalLoginBtn" type="submit" value="Login"/>
                                 </div>
                             </div>
                         </div>
                     </form>
-
-                    <button id="registerBtn" class="btn btn-lg btn-primary authModalRegisterBtn"
-                        data-dismiss="modal">Register</button>
-
                 </div>
-                <div class="modal-footer authFooter">
+                <div class="authFooter">
+                    <button id="registerBtn" class="btn btn-block border border-0 authModalRegisterBtn" data-dismiss="modal">Don't have an account? Click here to Register</button>
                 </div>
-
             </div>
-
         </div>
     </div>
     </div>
-
     <script>
         const url = new URL(window.location);
         const params = new URLSearchParams(url.search);
@@ -86,8 +71,5 @@
             document.body.insertBefore(p, document.body.childNodes[0]);
         }
     </script>
-
 </body>
-
-
 </html>
