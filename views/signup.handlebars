@@ -14,21 +14,16 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-
 </head>
-
 <body>
     <div class="jumbotron jumbotron-fluid jumbo">
     </div>
-
     <div id="login" class="modal-dialog">
         <div class="modal-content round">
             <div class="modal-header authHeader">
-                <h1 class="authTitle">Register</h1>
+                <h1 class="authTitle">Task Tracker</h1>
             </div>
             <div class="authBody">
-
-
                 <form id="modalForm signup" name="signup" method="POST" action="/signup">
                     <label for="first_name" class="inputText" for="uid-input">First Name:</label>
                     <input name="first_name" type="text" class="form-control inputText" id="name-input" placeholder="Enter your first name">
@@ -36,25 +31,17 @@
                     <input name="last_name" type="text" class="form-control inputText" id="name-input" placeholder="Enter your last name">
                     <label for="email" class="inputText" for="uid-input">E-mail:</label>
                     <input name="email" type="email" class="text form-control inputText" id="email-input" placeholder="Enter your e-mail address">
-
                     <label for="password" class="inputText" for="pass-input">Password:</label>
                     <input name="password" type="password" class="form-control inputText" id="pass-input" placeholder="Enter a password">
-
                     <div>
                         <div class="row">
                             <div class="mx-auto">
-
                                 <input class="btn" type="submit" value="Sign Up" />
-                                <!-- <button id="registerBtn" type="submit"
-                                    class="btn btn-lg btn-primary authModalRegisterBtn"
-                                    data-dismiss="modal">Register</button> -->
                             </div>
                         </div>
                     </div>
                 </form>
-
                 <button id="loginBtn" type="submit" class="btn btn-lg btn-success authModalLoginBtn">Login</button></a>
-
             </div>
             <div class="modal-footer authFooter"></div>
         </div>
