@@ -16,11 +16,10 @@
     <body>
         <script>
             $(document).ready(function (event) {
-                $("#loginBtn").click(function (event) {
-                    window.location.href = "/signin";
-                });
+                
                 $("#registerBtn").click(function (event) {
-                    window.location.href = "/signup";
+                    event.preventDefault();
+                    window.location.href = "/signin";
                 });
             });
         </script>
@@ -33,7 +32,7 @@
                         <h1 class="authTitle">Login</h1>
                     </div>
                     <div class="authBody">
-                        <form id="modalForm" method="POST" role="form">
+                        <form id="modalForm" method="POST" action="/signin">
                             <div class="form-group inputField">
                                 <label class="inputText">Your Name:</label>
                                 <input type="email" class="form-control inputText" id="email-input" placeholder="Enter username or e-mail address">
@@ -48,9 +47,9 @@
 
 
                                         <button id="loginBtn" type="submit"
-                                            class="btn btn-lg btn-success authModalLoginBtn">Login</button>
+                                            class="btn btn-lg btn-success authModalLoginBtn">Register</button>
 
-                                        <button id="registerBtn" type="submit"
+                                        <button id="registerBtn"
                                             class="btn btn-lg btn-primary authModalRegisterBtn"
                                             data-dismiss="modal">Register</button>
 
