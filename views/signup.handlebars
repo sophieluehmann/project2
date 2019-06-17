@@ -13,16 +13,25 @@
    
 </head>
 <body>      
+    <!--
      <script>
-    var loginButton = document.querySelector("#loginBtn");
-    loginButton.addEventListener('click', (event) => {
-        window.location.href = "/signin";
-    });
-    var registerButton = document.querySelector("#registerBtn");
-    logoutButton.addEventListener('click', (event) => {
-        window.location.href = "/signup";
-    });
-    </script>
+         $(document).ready(function (event) {
+                
+                $("#registerBtn").click(function (event) {
+                    event.preventDefault();
+                    window.location.href = "/signup";
+                });
+            });
+    </script>   -->
+    <script>
+            $(document).ready(function (event) {
+                
+                $("#registerBtn").click(function (event) {
+                    event.preventDefault();
+                    window.location.href = "/signup";
+                });
+            });
+        </script>
         <div class="jumbotron jumbotron-fluid jumbo">
         </div> 
         <div id ="login" class="modal-dialog">
@@ -31,7 +40,7 @@
                     <h1 class="authTitle">Register</h1>
                 </div>
                 <div class="authBody">
-                    <form id="signup" role="form">
+                    <form id="modalForm" method="POST" action="/signup">
                         <div class="form-group inputField">
                             <label class="inputText" for="uid-input">User Name:</label>
                             <input type="input" class="form-control inputText" id="name-input" placeholder="Enter your name">
@@ -49,9 +58,9 @@
                                 <div class="mx-auto">
                         
                         <button  id="loginBtn" type="submit" class="btn btn-lg btn-success authModalLoginBtn">Login</button></a>
-                            
+                     
                         <button id="registerBtn" type="submit" class="btn btn-lg btn-primary authModalRegisterBtn" data-dismiss="modal">Register</button>
-                              
+                       
                             </div>
                         </div>    
                     </div> 
