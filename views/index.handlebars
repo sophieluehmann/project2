@@ -9,28 +9,37 @@
   <div class="col-6">
 
       <h2>Tasks:</h2>
-      <p><form action="api/tasks" method="POST">Add a Task: <input type="text" name="title"><button type="submit" > + </button></form></p>
 
       <ul>
-      {{#each tasks}}
+      {{#each tasksArray}}
         {{#unless this.complete}}
-        <hr>
+       
         <div class="row">
-          <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
-          <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
-          <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
+          <a href="task/{{this.title}}">{{this.title}}</a>&nbsp;&nbsp;
+            <button data-taskId="{{this.title}}" class='taskComplete'> Complete </button>
         </div>
         <div class="row">
-          <p>{{this.description}}</p>
+          <ul>
+          {{#each this.tasks}}
+          
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck"+{{this.id}}>
+            <label class="form-check-label" for="defaultCheck"+{{this.id}}>
+              {{this.description}}
+            </label>
+          </div>
+         
+          {{/each}}
+          </ul>
         </div>
         <div class="row">
-          <form action="api/tasks" method="POST">
-            <input type="hidden" name="TaskId" value="{{this.id}}">
-            Add a Sub Task: <input type="text" name="title">
-            <button type="submit" > + </button>
+          <form action="api/tasks/{{this.title}}?_method=PUT" method="POST">
+            <p>Add Description:
+              <input type="text" name="description">
+              <button type="submit" class="newDescription">Submit</button>
+            </p>
           </form>
-        </div>
-        <div class="nestedTasks" data-root-task-id="{{this.id}}"></div>
+        </div>  
         {{/unless}}
       {{/each}}
       </ul>
@@ -50,67 +59,11 @@
         {{/each}}
       </ul>
       </div>
+      <p><form action="api/tasks" method="POST">Add a Task: <input type="text" name="title"><button type="submit" > + </button></form></p>
+
   </div>
 </div>
 <script>
-
-  const startPauseButtons = document.querySelectorAll('.startPauseTask');
-
-  // toggle start/pause buttons
-  for (let i = 0, len = startPauseButtons.length; i < len; i++) {
-    startPauseButtons[i].addEventListener('click', (event) => {
-      const state = event.target.attributes['data-state'].value;
-      const id = event.target.attributes['data-taskId'].value;
-      if (state === "started") {
-        event.target.setAttribute('data-state', "paused");
-        event.target.innerHTML = "Start"
-      } else if (state === "paused") {
-        event.target.setAttribute('data-state', "started");
-        event.target.innerHTML = "Pause"
-      }
-    });
-  }
-
-  // updates running tasks every minute.
-  setInterval(() => {
-    for (let i = 0, len = startPauseButtons.length; i < len; i++) {
-      len state = startPauseButtons[i].attributes['data-state'].value;
-      len id = startPauseButtons[i].attributes['data-taskId'].value;
-      if (state === "started") {
-        fetch(`/api/tasks/heartbeat/${id}`, {
-          method: 'PUT'
-        }).then(function(res) {
-          console.log('Incremented minutes spent on task', id);
-        }).catch(function(err) {
-          console.log(err)
-        });
-      }
-    }
-  }, 60000);
-
-  const nestedTasksDivs = document.querySelectorAll('.nestedTasks');
-  for (let i = 0, len = nestedTasksDivs.length; i < len; i++) {
-    const ntd = nestedTasksDivs[i];
-    const rootTaskId = ntd.getAttribute("data-root-task-id");
-    let nestedTasksHtml = "";
-    fetch(`/api/tasks/${rootTaskId}`)
-      .then(function(res) {
-        return res.json();
-      })
-      .then(function(tasks) {
-        console.log(tasks);
-        for (let i = 0, len = tasks.length; i < len; i++) {
-          if (tasks[i].title !== undefined) {
-            nestedTasksHtml += `<p><a href="task/${tasks[i].id}">${tasks[i].title}</a></p>`;
-          }
-        }
-        ntd.innerHTML = nestedTasksHtml;
-      })
-      .catch(function(err) {
-        console.log(err)
-      });
-  }
-
   const completeButtons = document.querySelectorAll('.taskComplete');
   for (let i = 0, len = completeButtons.length; i < len; i++) {
     completeButtons[i].addEventListener('click', (event) => {
@@ -124,7 +77,6 @@
       });
     });
   }
-
   const incompleteButtons = document.querySelectorAll('.taskIncomplete');
   for (let i = 0, len = incompleteButtons.length; i < len; i++) {
     incompleteButtons[i].addEventListener('click', (event) => {
@@ -138,7 +90,6 @@
       });
     });
   }
-
   const logoutButton = document.querySelector("#logout");
   logoutButton.addEventListener('click', (event) => {
     window.location.href = "/logout";

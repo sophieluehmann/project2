@@ -11,18 +11,36 @@ exports.signin = function(req, res) {
 };
 
 exports.index = function(req, res) {
-  console.log("something new ");
-  console.log(req.user.id);
-  // find all root tasks
-  db.Task.findAll({
-    where: {
-      UserId: req.user.id,
-      TaskId: null
+  console.log("something");
+  db.Task.findAll({}).then(function(dbTasks) {
+    var myTitles = [];
+    for (var i = 0; i < dbTasks.length; i++) {
+      var title = dbTasks[i].dataValues.title;
+      if (!myTitles.includes(title)) {
+        myTitles.push(title);
+      }
     }
-  }).then(function(dbTasks) {
+    var handlebarsArray = [];
+    for (var i = 0; i < myTitles.length; i++) {
+      var result = dbTasks.filter(function(task) {
+        if (task.title === myTitles[i]) {
+          console.log(task.dataValues);
+          return true;
+        } else {
+          return false;
+        }
+      });
+      var adjResult = result.map(function(data) {
+        return data.dataValues;
+      });
+      var newObject = { title: myTitles[i], tasks: adjResult };
+      handlebarsArray.push(newObject);
+    }
+    console.log(handlebarsArray);
+    //console.log(myTitles);
     res.render("index", {
       msg: "Welcome!",
-      tasks: dbTasks
+      tasksArray: handlebarsArray
     });
   });
 };
