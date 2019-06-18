@@ -6,15 +6,17 @@
             <p class="indexMotto">"When you need to tackle, track, and tame your to-do list"</p> 
         </div>
         <div class="col-lg-2">
-            <button class="btn btn-lg btn-primary border border-0 indexLogoutBtn" type="logout" id="logout">Logout</button>
+            <button class="btn btn-lg btn-primary border border-0 indexLogoutBtn" type="logout" id="logout">  Logout  </button>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <div class="row">
+            <div class="row headerFooterBgColor">
                 <h2 class="addTaskTitle textcenter">Task List:</h2>
+            </div>
+            <div class="row addTaskSpacer">
                 <p><form action="api/tasks" method="POST"><span class="addTask indentA">Add a Task: &nbsp;&nbsp;&nbsp; </span><input type="text" size="40" name="title"><button type="submit" > + </button></form></p>  
             </div>  
             <hr class="topdivider">
@@ -25,8 +27,8 @@
                             {{#unless this.complete}}
                                 <div class="row">
                                     <a href="task/{{this.id}}">{{this.title}}</a>
-                                    <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
-                                    <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
+                                    <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='btn btn-sm border border-0 smallIndexBtn startPauseTask'>Start</button>&nbsp;&nbsp;
+                                    <button data-taskId="{{this.id}}" class='btn btn-sm border border-0 smallIndexBtn taskComplete'>Complete</button>
                                 </div>
                                 <div class="row">
                                     <p>{{this.description}}</p>
@@ -47,10 +49,10 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="row">
+            <div class="row headerFooterBgColor">
                 <h2 class="completeTitle textcenter">Completed Tasks:</h2>
             </div>  
-            <hr class="topdivider">
+            <hr class="topCompleteDivider">
             <div class="row">
                 <div class="col-lg-12">
                     <ul>
@@ -58,7 +60,7 @@
                         {{#if complete}}
                           <div class="row">
                             <s><a href="task/{{this.id}}">{{this.title}}</a></s>&nbsp;&nbsp;
-                            <button data-taskId="{{this.id}}" class="taskIncomplete">Incomplete</button><br>
+                            <button data-taskId="{{this.id}}" class="btn btn-sm border border-0 smallIndexBtn taskIncomplete">Activate</button><br>
                           </div>
                           <br>
                         {{/if}}
@@ -196,6 +198,13 @@
   font-size: 40px;
   color: black;
   text-align: center;
+  padding-top: 10px;
+}
+.headerFooterBgColor {
+ background-color: #6D7993;
+}
+.addTaskSpacer {
+  margin-top: 15px;
 }
 .addTask {
   font-weight: 300;
@@ -208,7 +217,8 @@
   font-size: 40px;
   color: black;
   text-align: center;
-  margin-bottom: 40px;
+  padding-top: 10px;
+  
 }
 .editTaskTitle {
   font-weight: 300;
@@ -219,6 +229,11 @@
 .topdivider {
   border: 2px solid #6D7993;
   width: 90%;
+}
+.topCompleteDivider {
+  border: 2px solid #6D7993;
+  width: 90%;
+  margin-top: 65px;
 }
 .taskdivider {
   border: 1px solid #6D7993;
@@ -240,6 +255,19 @@
   max-height: 45px;
   margin-bottom: -10px;
   margin-top: -20px;
+}
+.smallIndexBtn {
+  background-color: #9099A2;
+    color: black;
+    font-weight: bold;
+    width: 75px;
+    border-radius: 12px;
+}
+.smallIndexBtn:hover {
+  background-color: #96858F;
+    color: black;
+    font-weight: bold;
+    border-radius: 12px;
 }
 .indexLogoutBtn {
     background-color: #9099A2;
