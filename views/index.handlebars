@@ -238,7 +238,6 @@
 .taskdivider {
   border: 1px solid #6D7993;
 }
-
 .jumboIndex {
   background-color: #6D7993;
   font-family: 'Baloo', cursive;
@@ -292,20 +291,58 @@ background-color: #96858F;
 <script>
 
   const startPauseButtons = document.querySelectorAll('.startPauseTask');
+  const allTimers = document.querySelectorAll('.timer');
 
   // toggle start/pause buttons
   for (let i = 0, len = startPauseButtons.length; i < len; i++) {
+
+    // setting the viewable state initially
+    let _state = startPauseButtons[i].attributes['data-state'].value;
+    startPauseButtons[i].innerHTML = _state.charAt(0).toUpperCase() + _state.slice(1)
+
+    // click handler for toggling state
     startPauseButtons[i].addEventListener('click', (event) => {
       const state = event.target.attributes['data-state'].value;
       const id = event.target.attributes['data-taskId'].value;
       if (state === "started") {
         event.target.setAttribute('data-state', "paused");
-        event.target.innerHTML = "Start"
+        event.target.innerHTML = "Paused";
+        fetch(`/api/tasks/pause/${id}`, {
+          method: 'PUT'
+        }).then(function(res) {
+          console.log('Paused Task', id);
+        }).catch(function(err) {
+          console.log(err)
+        });
       } else if (state === "paused") {
         event.target.setAttribute('data-state', "started");
-        event.target.innerHTML = "Pause"
+        event.target.innerHTML = "Started"
+        fetch(`/api/tasks/start/${id}`, {
+          method: 'PUT'
+        }).then(function(res) {
+          console.log('Started Task', id);
+        }).catch(function(err) {
+          console.log(err)
+        });
+      }
+      // toggle timer
+      for (let i = 0, len = allTimers.length; i < len; i++) {
+        if (allTimers[i].attributes['data-taskId'].value === id) {
+          let state = allTimers[i].attributes['data-state'].value;
+          if (state === "started") {
+            allTimers[i].setAttribute('data-state', "paused");
+          } else {
+            allTimers[i].setAttribute('data-state', "started");
+          }
+        }
       }
     });
+  }
+
+  for (let i = 0, len = allTimers.length; i < len; i++) {
+    let minutes = allTimers[i].attributes['data-minutesSpent'].value;
+    let seconds = "00";
+    allTimers[i].innerHTML = `${minutes}:${seconds}`;
   }
 
   // updates running tasks every minute.
@@ -324,6 +361,30 @@ background-color: #96858F;
       }
     }
   }, 60000);
+
+  // if num is single digit, pad it
+  function maybePadWithZero(num) {
+    if (num < 10) {
+      return "0" + String(num);
+    }
+    return String(num);
+  }
+  // updates active timers every second
+  setInterval(() => {
+    for (let i = 0, len = allTimers.length; i < len; i++) {
+      let state = allTimers[i].attributes['data-state'].value;
+      if (state === "started") {
+        let time = allTimers[i].innerHTML;
+        let minutes = parseInt(time.substring(0, 2));
+        let seconds = parseInt(time.slice(-2)) + 1;
+        if (seconds >= 60) {
+          seconds = 0;
+          minutes++
+        }
+        allTimers[i].innerHTML = `${maybePadWithZero(minutes)}:${maybePadWithZero(seconds)}`
+      }
+    }
+  }, 1000)
 
   const nestedTasksDivs = document.querySelectorAll('.nestedTasks');
   for (let i = 0, len = nestedTasksDivs.length; i < len; i++) {
@@ -379,5 +440,9 @@ background-color: #96858F;
   const logoutButton = document.querySelector("#logout");
   logoutButton.addEventListener('click', (event) => {
     window.location.href = "/logout";
+  });
+
+  window.addEventListener("beforeunload", function(event) {
+
   });
 </script>
