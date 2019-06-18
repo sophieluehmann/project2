@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="row">
-                <h2 class="addTaskTitle textcenter">Task List:</h2>
+                <h1 class="addTaskTitle textcenter">Task List:</h1>
                 <p><form action="api/tasks" method="POST"><span class="addTask indentA">Add a Task: &nbsp;&nbsp;&nbsp; </span><input type="text" size="40" name="title"><button type="submit" > + </button></form></p>  
             </div>  
             <hr class="topdivider">
@@ -51,20 +51,23 @@
                 <h2 class="completeTitle textcenter">Completed Tasks:</h2>
             </div>  
             <hr class="topdivider">
-            
-            <ul>
-              {{#each tasks}}
-                {{#if complete}}
-                  <div class="row">
-                    <s><a href="task/{{this.id}}">{{this.title}}</a></s>&nbsp;&nbsp;
-                    <button data-taskId="{{this.id}}" class="taskIncomplete">Incomplete</button><br>
-                  </div>
-                  <br>
-                {{/if}}
-              {{/each}}
-            </ul>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul>
+                      {{#each tasks}}
+                        {{#if complete}}
+                          <div class="row">
+                            <s><a href="task/{{this.id}}">{{this.title}}</a></s>&nbsp;&nbsp;
+                            <button data-taskId="{{this.id}}" class="taskIncomplete">Incomplete</button><br>
+                          </div>
+                          <br>
+                        {{/if}}
+                      {{/each}}
+                    </ul>
+                </div>
+            </div>
         </div>
-  </div>
+    </div>
 </div>
 <style>
   * {
