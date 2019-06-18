@@ -27,8 +27,8 @@ module.exports = function(passport, user) {
       {
         usernameField: "email",
         passwordField: "password",
-        firstnameField: "first_name",
-        lastnameField: "last_name",
+        firstnameField: "firstName",
+        lastnameField: "lastName",
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
@@ -48,8 +48,8 @@ module.exports = function(passport, user) {
             var data = {
               email: email,
               password: userPassword,
-              firstName: req.body.first_name,
-              lastName: req.body.last_name
+              firstName: req.body.firstName,
+              lastName: req.body.lastName
             };
 
             User.create(data).then(function(newUser) {
