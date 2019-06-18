@@ -126,4 +126,44 @@ module.exports = function(app) {
         res.status(500).send(`Server Error: ${err}`);
       });
   });
+
+  // Start Task
+  app.put("/api/tasks/start/:id", function(req, res) {
+    db.Task.update(
+      { state: "started" },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(function(dbTasks) {
+        console.log(dbTasks);
+        res.status(200).send(`Task started: ${dbTasks}`);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err}`);
+      });
+  });
+
+  // Pause Task
+  app.put("/api/tasks/pause/:id", function(req, res) {
+    db.Task.update(
+      { state: "paused" },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(function(dbTasks) {
+        console.log(dbTasks);
+        res.status(200).send(`Task paused: ${dbTasks}`);
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send(`Server Error: ${err}`);
+      });
+  });
 };

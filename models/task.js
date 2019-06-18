@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       complete: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      state: {
+        type: DataTypes.STRING,
+        defaultValue: "paused"
       }
     },
     {
