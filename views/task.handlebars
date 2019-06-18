@@ -1,8 +1,8 @@
 <div class="container editTaskBackground">
     <div class="row">
         <div class="col-6 offset-3">
-            <div class="card mt-4 modal-dialog round jumbo headerSpacer">
-                <div class="card-body modal-content editTaskTitle">
+            <div class="card mt-4 round jumbo headerSpacer">
+                <div class="card-body editTaskTitle">
                     <h1 class="card-title marginAdjA textcenter">Edit Task</h1>
                 </div>
                 <div class="editTaskBody">
@@ -10,8 +10,8 @@
                         {{!-- <p>
                           <strong>ID</strong>: {{task.id}}</p>
                         <p> --}}
-                      <span class="editTaskName">Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><input name="title" size="40" class="editTaskName" type="text" value="{{task.title}}"></p>
-                      <span class="editDescription">Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><textarea rows="4" cols="40" name="description">{{task.description}}</textarea></p>
+                      <span class="editTaskName">&nbsp;&nbsp;&nbsp;Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><input name="title" size="40" class="editTaskName" type="text" value="{{task.title}}"></p>
+                      <span class="editDescription">&nbsp;&nbsp;&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><textarea rows="4" cols="40" name="description">{{task.description}}</textarea></p>
                     <div class="row editTaskButtons">
                       <div class="col-4 text-center">  
                         <button class="btn btn-md btn-primary border border-0 btncenter editTaskBtn" type="submit" id="update">Submit</button>
