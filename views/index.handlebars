@@ -25,10 +25,11 @@
                     <ul>
                         {{#each tasks}}
                             {{#unless this.complete}}
-                                <div class="row">
-                                    <a href="task/{{this.id}}">{{this.title}}</a>
-                                    <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='btn btn-sm border border-0 smallIndexBtn startPauseTask'>Start</button>&nbsp;&nbsp;
-                                    <button data-taskId="{{this.id}}" class='btn btn-sm border border-0 smallIndexBtn taskComplete'>Complete</button>
+                                <div class="row task">
+                                    <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
+                                    <button data-taskId="{{this.id}}" data-state="{{this.state}}" class='btn btn-sm border border-0 smallIndexBtn startPauseTask'>Start</button>&nbsp;&nbsp;
+                                    <button data-taskId="{{this.id}}" class='btn btn-sm border border-0 smallIndexBtn taskComplete'>Complete</button>&nbsp;&nbsp;
+                                    <span class="timer" data-taskId="{{this.id}}" data-minutesSpent="{{this.minutesSpent}}" data-state="{{this.state}}"></span>
                                 </div>
                                 <div class="row">
                                     <p>{{this.description}}</p>
@@ -339,12 +340,6 @@ background-color: #96858F;
     });
   }
 
-  for (let i = 0, len = allTimers.length; i < len; i++) {
-    let minutes = allTimers[i].attributes['data-minutesSpent'].value;
-    let seconds = "00";
-    allTimers[i].innerHTML = `${minutes}:${seconds}`;
-  }
-
   // updates running tasks every minute.
   setInterval(() => {
     for (let i = 0, len = startPauseButtons.length; i < len; i++) {
@@ -369,6 +364,13 @@ background-color: #96858F;
     }
     return String(num);
   }
+
+  for (let i = 0, len = allTimers.length; i < len; i++) {
+    let minutes = allTimers[i].attributes['data-minutesSpent'].value;
+    let seconds = "00";
+    allTimers[i].innerHTML = `${maybePadWithZero(minutes)}:${seconds}`;
+  }
+
   // updates active timers every second
   setInterval(() => {
     for (let i = 0, len = allTimers.length; i < len; i++) {

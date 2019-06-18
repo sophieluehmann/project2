@@ -90,7 +90,10 @@ module.exports = function(app) {
   // Complete a task
   app.put("/api/tasks/complete/:id", function(req, res) {
     db.Task.update(
-      { complete: true },
+      {
+        complete: true,
+        state: "paused"
+      },
       {
         where: {
           id: req.params.id
