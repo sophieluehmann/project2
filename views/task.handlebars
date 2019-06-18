@@ -1,25 +1,32 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Task</h5>
-
-          <form action="/api/tasks/{{task.id}}" method="POST">
-            <p>
-              <strong>ID</strong>: {{task.id}}</p>
-            <p>
-              <p>
-                <strong>Title</strong>: <input name="title" type="text" value="{{task.title}}"></p>
-              <p>
-                <strong>Description:</strong><textarea rows="4" cols="48" name="description">{{task.description}}</textarea></p>
-              <button type="submit" id="update" style="color: green"> Submit changes </button>
-              
-          </form>
-
-          <button id="delete" style="color: red"> Delete </button><br>
-
-          <a href="/">← Back To Home</a>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card mt-4 round jumbo headerSpacer">
+                <div class="card-body editTaskTitle">
+                    <h1 class="card-title marginAdjA textcenter">Edit Task</h1>
+                </div>
+                <div class="editTaskBody">
+                    <form action="/api/tasks/{{task.id}}" method="POST">
+                        {{!-- <p>
+                          <strong>ID</strong>: {{task.id}}</p>
+                        <p> --}}
+                      <span class="editTaskName">Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><input name="title" size="40" class="editTaskName" type="text" value="{{task.title}}"></p>
+                      <span class="editDescription">Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><textarea rows="4" cols="40" name="description">{{task.description}}</textarea></p>
+                    <div class="row editTaskButtons">
+                      <div class="col-4 text-center">  
+                        <button class="btn btn-md btn-primary border border-0 btncenter editTaskBtn" type="submit" id="update">Submit</button>
+                      </div>
+                      <div class="col-4 text-center">  
+                        <button class="btn btn-md btn-primary border border-0 btncenter editTaskBtn" id="delete">Delete</button>
+                      </div>
+                      <div class="col-4 text-center">  
+                        <button href="/" class="btn btn-md btn-primary border border-0 btncenter editTaskBtn" id="cancel">Cancel</button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+              <div class="card-body editTaskFooter">
+                </div>
         </div>
       </div>
     </div>
@@ -42,6 +49,9 @@
 
 </script>
 <style>
+  {{!-- * {
+  border: red solid 1px;
+} --}}
   .list-group-item {
     line-height: 2.5;
   }
@@ -146,5 +156,157 @@
             background-color: #6D7993;
               color: black;
               font-weight: bold;
+  }
+.indexTitle {
+  font-weight: 300;
+  font-size: 65px;
+  color: black;
+  text-align: center;
+  margin-top: 10px;
+} 
+.indexMotto {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+.addTaskTitle {
+  font-weight: 300;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+}
+.addTask {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+.completeTitle {
+  font-weight: 300;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.topdivider {
+  border: 2px solid #6D7993;
+  width: 90%;
+}
+.taskdivider {
+  border: 1px solid #6D7993;
+}
+
+.jumboIndex {
+  background-color: #6D7993;
+  font-family: 'Baloo', cursive;
+}
+.marginAdjA {
+  margin-top: -10px;
+}
+.headerSpacer {
+  height: 30px;
+  margin-top: 30px;
+  border: 0px;
+  background-color: #D5D5D5;
+}
+.indentA {
+  margin-left: 10px; 
+}
+.textcenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+.jumboHeader{
+  align-content: center;
+  max-height: 45px;
+  margin-bottom: -10px;
+  margin-top: -20px;
+}
+.indexLogoutBtn {
+    background-color: #9099A2;
+    color: black;
+    font-weight: bold;
+    width: 110px;
+    border-radius: 18px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+.indexLogoutBtn:hover {
+background-color: #96858F;
+        color: black;
+        font-weight: bold;
+        width: 110px;
+        margin-right: 0px;
+        border-radius: 18px;
+        cursor: pointer;
+        margin-top: 50px;
+}
+.editTaskTitle {
+  font-weight: 300;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+  background-color: #6D7993;
+  height: 60px;
+  margin-top: 50px;
+  padding-bottom: 15px;
+  display: block;
+  border-radius: 20px 20px 0px 0px;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px 5px 0px 5px;
+}
+ .editTaskBody {
+    border-color: black;
+    border-style: solid;
+    border-width: 0px 5px 0px 5px;
+  }
+.editTaskFooter {
+  background-color: #6D7993;
+  height: 20px;
+  padding-top: 15px;
+  display: block;
+  border-radius:  0px 0px 20px 20px;
+    border-color: black;
+    border-style: solid;
+    border-width: 0px 5px 5px 5px;
+}
+.editTaskName {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  margin-top: 15px;
+}
+.editDescription {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  vertical-align: top;
+}
+.btncenter {
+  margin-left: auto;
+  margin-right: auto;
+}
+.editTaskButtons {
+  margin-left: auto;
+  margin-right: auto;
+  height: 60px;
+}
+  .editTaskBtn {
+  background-color: #6D7993;
+              color: black;
+              font-weight: bold;
+              border-radius: 18px;
+              text-align: center;
+              cursor: pointer;
+  }
+  .editTaskBtn:hover {
+    background-color: #96858F;
+            color: black;
+            font-weight: bold;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
   }
 </style>

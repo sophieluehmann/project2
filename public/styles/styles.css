@@ -1,16 +1,41 @@
 .list-group-item {
   line-height: 2.5;
 }
-
+/* * {
+  border: red solid 1px;
+} */
 body {
-  background-color: rgb(213, 213, 213);
+  background-color: #D5D5D5;
   font-family: 'Baloo', cursive;
 }
 .jumbo {
-  background-color: rgb(213, 213, 213);
+  background-color: #D5D5D5;
   font-family: 'Baloo', cursive;
 }
-
+.jumboIndex {
+  background-color: #6D7993;
+  font-family: 'Baloo', cursive;
+}
+.jumboHeader{
+  max-height: 45px;
+}
+.indexLogoutBtn {
+    background-color: #9099A2;
+    color: black;
+    font-weight: bold;
+    width: 110px;
+    border-radius: 18px;
+    cursor: pointer;
+}
+.indexLogoutBtn:hover {
+background-color: #96858F;
+        color: black;
+        font-weight: bold;
+        width: 110px;
+        margin-right: 0px;
+        border-radius: 18px;
+        cursor: pointer;
+}
 .round {
   border-radius: 20px;
 }
@@ -31,7 +56,18 @@ body {
   color: black;
   text-align: center;
 } 
-
+.indexTitle {
+  font-weight: 300;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+} 
+.indexMotto {
+  font-weight: 300;
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}
 .authFormText {
  font-size: 36 px;
   color: black;
@@ -105,11 +141,7 @@ body {
           cursor: pointer;
 }
 
-.authModalLogoutBtn {
-          background-color: #6D7993;
-            color: black;
-            font-weight: bold;
-}
+
         
         
         
