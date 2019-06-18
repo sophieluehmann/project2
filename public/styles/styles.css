@@ -40,6 +40,9 @@ background-color: #96858F;
 .round {
   border-radius: 20px;
 }
+.blue {
+  color: rgb(0, 0, 255);
+}
 .roundAuth {
   background-color: #9099A2;
 }
