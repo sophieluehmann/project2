@@ -5,7 +5,8 @@
   border: red solid 1px;
 } */
 body {
-  background-color: #D5D5D5;
+  /* background-color: #D5D5D5; */
+  background-color: #9099A2;
   font-family: 'Baloo', cursive;
 }
 .jumbo {
@@ -38,6 +39,9 @@ background-color: #96858F;
 }
 .round {
   border-radius: 20px;
+}
+.roundAuth {
+  background-color: #9099A2;
 }
 .inputField {
   margin-top: 25px;
@@ -78,6 +82,7 @@ background-color: #96858F;
   border-style: solid;
   border-width: 0px 5px 0px 5px;
   padding-bottom: 25px;
+  background-color: #D5D5D5;
  }
 
 .authHeader {
