@@ -19,20 +19,31 @@
             <div class="row addTaskSpacer">
                 <p><form action="api/tasks" method="POST"><span class="addTask indentA">Add a Task: &nbsp;&nbsp;&nbsp; </span><input type="text" size="40" name="title"><button type="submit" > + </button></form></p>  
             </div>  
-            <hr class="topdivider">
+           <hr class="topdivider">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul>
+                    <ul> 
                         {{#each tasks}}
                             {{#unless this.complete}}
-                                <div class="row task">
-                                    <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
-                                    <button data-taskId="{{this.id}}" data-state="{{this.state}}" class='btn btn-sm border border-0 smallIndexBtn startPauseTask'>Start</button>&nbsp;&nbsp;
-                                    <button data-taskId="{{this.id}}" class='btn btn-sm border border-0 smallIndexBtn taskComplete'>Complete</button>&nbsp;&nbsp;
-                                    <span class="timer" data-taskId="{{this.id}}" data-minutesSpent="{{this.minutesSpent}}" data-state="{{this.state}}"></span>
+                                <div class="row task addedTask">
+                                    <div class="col-10">
+                                        <a href="task/{{this.id}}" class="taskMargin pWidth">{{this.title}}</a>
+                                    </div>
+                                    <div class="col-2">
+                                        <button data-taskId="{{this.id}}" class='floatRight btn btn-sm border border-0 smallIndexBtn taskComplete'>Complete</button>
+                                    </div>
+                                </div>
+                                <div class="row addedTask">
+                                    <div class="col-4 indentB">
+                                        <span>Timer: </span>
+                                        <span class="timer" data-taskId="{{this.id}}" data-minutesSpent="{{this.minutesSpent}}" data-state="{{this.state}}"></span>
+                                    </div>
+                                    <div class="col-8">
+                                      <button data-taskId="{{this.id}}" data-state="{{this.state}}" class='btn btn-sm border border-0 timerButton startPauseTask'>Start</button>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <p>{{this.description}}</p>
+                                    <p class="pWidth">{{this.description}}</p>
                                 </div>
                                 <div class="row">
                                     <form action="api/tasks" method="POST">
@@ -60,8 +71,12 @@
                       {{#each tasks}}
                         {{#if complete}}
                           <div class="row">
-                            <s><a href="task/{{this.id}}">{{this.title}}</a></s>&nbsp;&nbsp;
-                            <button data-taskId="{{this.id}}" class="btn btn-sm border border-0 smallIndexBtn taskIncomplete">Activate</button><br>
+                              <div class="col-9">
+                                  <s><a href="task/{{this.id}}" class="doneTask pWidth">{{this.title}}</a></s>
+                              </div>
+                              <div class="col-3">
+                                  <button data-taskId="{{this.id}}" class="btn btn-sm border border-0 smallIndexBtn taskIncomplete">Reactivate</button>
+                              </div>
                           </div>
                           <br>
                         {{/if}}
@@ -204,14 +219,37 @@
 .headerFooterBgColor {
  background-color: #6D7993;
 }
+.pWidth {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .addTaskSpacer {
   margin-top: 15px;
+}
+.doneTask {
+  font-weight: 300;
+  font-size: 20px;
+  {{!-- line-height: 75%; --}}
 }
 .addTask {
   font-weight: 300;
   font-size: 20px;
   color: black;
   text-align: center;
+}
+.floatLeft {
+text-align: left;
+display: inline;
+}
+.floatRight {
+display: inline;
+float: right;
+}
+.addedTask {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
 }
 .completeTitle {
   font-weight: 300;
@@ -246,6 +284,13 @@
 .indentA {
   margin-left: 10px; 
 }
+.indentB {
+  margin-left: -20px; 
+}
+.taskMargin {
+  margin-left: -50px;
+  margin-right: 20px; 
+}
 .textcenter {
   margin-left: auto;
   margin-right: auto;
@@ -255,6 +300,22 @@
   max-height: 45px;
   margin-bottom: -10px;
   margin-top: -20px;
+}
+.timerButton {
+  background-color: #9099A2;
+    color: black;
+    font-weight: bold;
+    width: 110px;
+    border-radius: 12px;
+    margin-left: -40px;
+}
+.timerButton:hover {
+  background-color: #96858F;
+    color: black;
+    font-weight: bold;
+    width: 110px;
+    border-radius: 12px;
+    margin-left: -40px;
 }
 .smallIndexBtn {
   background-color: #9099A2;
@@ -267,6 +328,7 @@
   background-color: #96858F;
     color: black;
     font-weight: bold;
+    width: 75px;
     border-radius: 12px;
 }
 .indexLogoutBtn {
@@ -274,6 +336,9 @@
     color: black;
     font-weight: bold;
     width: 110px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 18px;
     cursor: pointer;
     margin-top: 50px;
@@ -284,7 +349,10 @@ background-color: #96858F;
         font-weight: bold;
         width: 110px;
         margin-right: 0px;
-        border-radius: 18px;
+        border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 18px;
         cursor: pointer;
         margin-top: 50px;
 }
@@ -307,7 +375,7 @@ background-color: #96858F;
       const id = event.target.attributes['data-taskId'].value;
       if (state === "started") {
         event.target.setAttribute('data-state', "paused");
-        event.target.innerHTML = "Paused";
+        event.target.innerHTML = "Start Timer";
         fetch(`/api/tasks/pause/${id}`, {
           method: 'PUT'
         }).then(function(res) {
@@ -317,7 +385,7 @@ background-color: #96858F;
         });
       } else if (state === "paused") {
         event.target.setAttribute('data-state', "started");
-        event.target.innerHTML = "Started"
+        event.target.innerHTML = "Stop Timer";
         fetch(`/api/tasks/start/${id}`, {
           method: 'PUT'
         }).then(function(res) {
