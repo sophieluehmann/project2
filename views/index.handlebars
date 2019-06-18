@@ -10,19 +10,18 @@
         </div>
     </div>
 </div>
-
 <div class="container">
-  <div class="row">
-  <div class="col-6">
-      <h2>Tasks:</h2>
-      <p><form action="api/tasks" method="POST">Add a Task: <input type="text" name="title"><button type="submit" > + </button></form></p>
+    <div class="row">
+        <div class="col-lg-6 textcenter">
+            <h2 class="addTaskTitle">Tasks:</h2>
+            <p><form action="api/tasks" method="POST"><span class="addTask">Add a Task: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><input type="text" size="45" name="title"><button type="submit" > + </button></form></p>
 
       <ul>
       {{#each tasks}}
         {{#unless this.complete}}
         <hr>
         <div class="row">
-          <a href="task/{{this.id}}">{{this.title}}</a>&nbsp;&nbsp;
+          <a href="task/{{this.id}}">{{this.title}}</a>
           <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
           <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
         </div>
@@ -169,19 +168,36 @@
   }
 .indexTitle {
   font-weight: 300;
-  font-size: 48px;
+  font-size: 65px;
   color: black;
   text-align: center;
+  margin-top: 10px;
 } 
 .indexMotto {
   font-weight: 300;
-  font-size: 18px;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+.addTaskTitle {
+  font-weight: 300;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+}
+.addTask {
+  font-weight: 300;
+  font-size: 24px;
   color: black;
   text-align: center;
 }
 .jumboIndex {
   background-color: #6D7993;
   font-family: 'Baloo', cursive;
+}
+.textcenter {
+  text-align: center;
+  align-items: center;
 }
 .jumboHeader{
   align-content: center;
