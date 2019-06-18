@@ -12,36 +12,41 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 textcenter">
-            <h2 class="addTaskTitle">Tasks:</h2>
-            <p><form action="api/tasks" method="POST"><span class="addTask">Add a Task: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><input type="text" size="45" name="title"><button type="submit" > + </button></form></p>
-
-      <ul>
-      {{#each tasks}}
-        {{#unless this.complete}}
-        <hr>
-        <div class="row">
-          <a href="task/{{this.id}}">{{this.title}}</a>
-          <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
-          <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
+        <div class="col-lg-6">
+            <div class="row">
+                <h2 class="addTaskTitle textcenter">Tasks:</h2>
+                <p><form action="api/tasks" method="POST"><span class="addTask indentA">Add a Task: &nbsp;&nbsp;&nbsp; </span><input type="text" size="40" name="title"><button type="submit" > + </button></form></p>  
+            </div>  
+            <hr class="topdivider">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul>
+                        {{#each tasks}}
+                            {{#unless this.complete}}
+                                <div class="row">
+                                    <a href="task/{{this.id}}">{{this.title}}</a>
+                                    <button data-taskId="{{this.id}}" data-state="paused" data-intervalid="0" class='startPauseTask'>Start</button>&nbsp;&nbsp;
+                                    <button data-taskId="{{this.id}}" class='taskComplete'> Complete </button>
+                                </div>
+                                <div class="row">
+                                    <p>{{this.description}}</p>
+                                </div>
+                                <div class="row">
+                                    <form action="api/tasks" method="POST">
+                                        <input type="hidden" name="TaskId" value="{{this.id}}">
+                                        Add a Sub Task: <input type="text" name="title">
+                                        <button type="submit" > + </button>
+                                    </form>
+                                </div>
+                                <div class="nestedTasks" data-root-task-id="{{this.id}}"></div>
+                                <hr class="taskdivider">
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <p>{{this.description}}</p>
-        </div>
-        <div class="row">
-          <form action="api/tasks" method="POST">
-            <input type="hidden" name="TaskId" value="{{this.id}}">
-            Add a Sub Task: <input type="text" name="title">
-            <button type="submit" > + </button>
-          </form>
-        </div>
-        <div class="nestedTasks" data-root-task-id="{{this.id}}"></div>
-        {{/unless}}
-      {{/each}}
-      </ul>
-    
-  </div>
-  <div class="col-6">
+  <div class="col-lg-6">
     <h3>Complete:</h3>
       <ul>
         {{#each tasks}}
@@ -187,17 +192,28 @@
 }
 .addTask {
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   color: black;
   text-align: center;
 }
+.topdivider {
+  border: 2px solid #6D7993;
+  width: 90%;
+}
+.taskdivider {
+  border: 1px solid #6D7993;
+}
+
 .jumboIndex {
   background-color: #6D7993;
   font-family: 'Baloo', cursive;
 }
+.indentA {
+  margin-left: 10px; 
+}
 .textcenter {
-  text-align: center;
-  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .jumboHeader{
   align-content: center;
